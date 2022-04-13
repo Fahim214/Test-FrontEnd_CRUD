@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import path from "path"
 
 import productRoutes  from "./routes/productRoutes.js"
+import userRoutes from "./routes/userRoutes.js"
 
 
 const app = express()
@@ -16,6 +17,7 @@ import connectDatabase from "./config/db.js";
 connectDatabase()
 
 app.use("/api/products", productRoutes)
+app.use("/api/users", userRoutes)
 
 const PORT = process.env.PORT || 5600
 app.listen(PORT, console.log(`Server is running on port ${PORT}`))
