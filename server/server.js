@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv"
 import connectDatabase from "./config/db.js";
+import cors from "cors"
 
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js"
 
@@ -15,6 +16,7 @@ dotenv.config({ path: 'server/config/config.env' })
 connectDatabase()
 
 app.use(express.json())
+app.use(cors())
 
 app.use("/api/products", productRoutes)
 app.use("/api/users", userRoutes)
