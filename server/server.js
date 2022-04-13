@@ -5,11 +5,13 @@ import path from "path"
 
 import productRoutes  from "./routes/productRoutes.js"
 
-import connectDatabase from "./config/db.js";
 
 const app = express()
 
 dotenv.config({ path: 'server/config/config.env' })
+
+import connectDatabase from "./config/db.js";
+
 
 connectDatabase()
 

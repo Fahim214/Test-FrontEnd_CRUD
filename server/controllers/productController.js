@@ -28,3 +28,20 @@ export const getAllProduct = asyncHandler(async (req, res) => {
         pages: Math.ceil(count / pageSize)
     })
 })
+
+
+// Create product
+export const createProduct = asyncHandler(async(req, res) => {
+    const product = new Product({
+        name: req.body.name,
+        price: req.body.price,
+        image: req.body.image || "/images/simple.png"
+    })
+
+    const createdProduct = await product.save()
+
+    res.status(201).json({
+        success: true,
+        product: createdProduct
+    })
+})
