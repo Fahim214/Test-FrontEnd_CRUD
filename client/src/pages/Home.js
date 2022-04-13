@@ -8,7 +8,6 @@ const Home = () => {
     <div>
       <NavbarComp />
       <Container>
-        <h3>Ini adalah aplikasi pertama saya</h3>
         <ProductList />
       </Container>
     </div>

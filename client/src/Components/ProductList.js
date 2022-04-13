@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductList = () => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const [product, setProduct] = useState([]);
 
   const getData = async () => {
@@ -19,7 +24,7 @@ const ProductList = () => {
   }, []);
   return (
     <div>
-      <Container>
+      <Container className="mt-3">
         <Row>
           {product.map((prod, index) => (
             <Col key={index} md={3} xs={6}>
@@ -27,7 +32,27 @@ const ProductList = () => {
                 <Card.Img variant="top" src={prod.image} />
                 <Card.Body>
                   <Card.Title className="card-title">{prod.name}</Card.Title>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Card.Title
+                    className="py-3"
+                    style={{ fontSize: 30, fontWeight: "bold" }}
+                  >
+                    $ {prod.price}
+                  </Card.Title>
+
+                  {userInfo ? (
+                    <Container>
+                      <Row>
+                        <Col md={4}>
+                          <Button variant="danger">Edit</Button>
+                        </Col>
+                        <Col md={8}>
+                          <Button variant="primary"> Buy Now</Button>
+                        </Col>
+                      </Row>
+                    </Container>
+                  ) : (
+                    <Button variant="primary">Buy Now</Button>
+                  )}
                 </Card.Body>
               </Card>
             </Col>

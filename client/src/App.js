@@ -9,7 +9,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<ProtectedRoute />} >
+            <Route path="/home" element={<Home />} />
+          </Route>
 
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/" element={<Login />} />
