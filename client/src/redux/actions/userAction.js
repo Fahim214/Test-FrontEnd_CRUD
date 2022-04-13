@@ -13,7 +13,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/users/login",
+      "http://localhost:5600/api/users/login",
       { email, password },
       config
     );
@@ -52,7 +52,7 @@ export const register = (name, email, password) => async (dispatch) => {
       };
   
       const { data } = await axios.post(
-        "/api/users/register",
+        "http://localhost:5600/api/users/register",
         {
           name,
           email,

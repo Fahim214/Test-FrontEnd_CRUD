@@ -1,16 +1,18 @@
-import React from 'react'
-import {Container} from "react-bootstrap"
-import ProductList from '../Components/ProductList'
+import React from "react";
+import { Container } from "react-bootstrap";
+import ProductList from "../Components/ProductList";
+import NavbarComp from "../Components/NavbarComp"
 
 const Home = () => {
   return (
     <div>
-        <Container>
+      <NavbarComp />
+      <Container>
         <h3>Ini adalah aplikasi pertama saya</h3>
         <ProductList />
-        </Container>
+      </Container>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

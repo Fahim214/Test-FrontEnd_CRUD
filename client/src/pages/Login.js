@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Row, Form } from "react-bootstrap";
+import { Container, Button, Col, Row, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import FormContainer from "../components/FormContainer";
-import Loading from "../components/Loading";
-import Message from "../components/Message";
-import { login } from "../redux/actions/userActions";
+// import Loading from "../components/Loading";
+// import Message from "../components/Message";
+import { login } from "../redux/actions/userAction";
 
 const Login = () => {
-  let navigate = useNavigate()
-  const dispatch = useDispatch()
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
   let location = useLocation()
 
   const [email, setEmail] = useState("")
@@ -22,20 +21,20 @@ const Login = () => {
 
   useEffect(() => {
     if(userInfo){
-      navigate(`/${location}`)
+      navigate(`/home`)
     }
   }, [dispatch, navigate, userInfo])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if(email !== "" && password !== "") dispatch(Login(email, password))
+    if(email !== "" && password !== "") dispatch(login(email, password))
   }
   return (
     <div>
-      <Contaienr>
-        <h2>Sign In</h2>
-        <Form onSubmit={handleSubmit}>
-        {error && <Message variant="danger">{error}</Message>}
+      <Container className="mt-5">
+        <h2 style={{ textAlign: "center"}}>Sign In</h2>
+        <Form style={{ width:"500px", margin: "10px auto"}} onSubmit={handleSubmit}>
+        {error && <h5>Ini Error</h5>}
           <Form.Group controlId="email" className="mt-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -55,15 +54,15 @@ const Login = () => {
             ></Form.Control>
           </Form.Group>
           <Button className="mt-3" type="submit" variant="primary">
-            {loading ? <Loading /> : "Sign In"}
+            {loading ? <h5>Loading . . .</h5> : "Sign In"}
           </Button>
         </Form>
-        <Row className="py-3">
+        <Row className="py-3" style={{ textAlign: "center"}}>
           <Col>
             New Customer? <Link to="/register">Register</Link>
           </Col>
         </Row>
-      </Contaienr>
+      </Container>
     </div>
   )
 }
