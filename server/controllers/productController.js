@@ -45,3 +45,25 @@ export const createProduct = asyncHandler(async(req, res) => {
         product: createdProduct
     })
 })
+
+
+// Update Product
+export const updateProduct = asyncHandler(async(req, res) => {
+    let product = await Product.findById(req.params.id)
+
+    if(product) {
+        product.name = req.body.name,
+        product.price = req.body.price,
+        product.image = req.body.image || "/images/simple.png"
+
+        const updatedProduct = await product.save()
+
+        res.status(201).json({
+            success: true,
+            product: createdProduct
+        })
+    } else {
+        res.status(401)
+        throw new Error("Product Not Found")
+    }
+})
