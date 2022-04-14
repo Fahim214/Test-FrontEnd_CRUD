@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProductList = () => {
+  let navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -22,10 +23,16 @@ const ProductList = () => {
   useEffect(() => {
     getData();
   }, []);
+
   return (
     <div>
       <Container className="mt-3">
         <Row>
+          <div style={{ textAlign: "right" }}>
+            <Link to="/add-product">
+              <Button>Tambah Produk</Button>
+            </Link>
+          </div>
           {product.map((prod, index) => (
             <Col key={index} md={3} xs={6}>
               <Card className="my-4">
@@ -42,10 +49,10 @@ const ProductList = () => {
                   {userInfo ? (
                     <Container>
                       <Row>
-                        <Col md={4}>
+                        <Col md={4} xs={4}>
                           <Button variant="danger">Edit</Button>
                         </Col>
-                        <Col md={8}>
+                        <Col md={8} xs={8}>
                           <Button variant="primary"> Buy Now</Button>
                         </Col>
                       </Row>
